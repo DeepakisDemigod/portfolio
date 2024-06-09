@@ -3,6 +3,7 @@ import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Contact from './components/Contact.jsx';
+import Footer from './components/Footer.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             element={<Contact />}
           />
         </Routes>
+        <Footer />
       </Router>
     </>
   );
