@@ -3,6 +3,9 @@ import { useForm, ValidationError } from '@formspree/react';
 import Confetti from './Confetti.jsx';
 
 const Contact = () => {
+  useEffect(() => {
+    document.title = 'Contact Deepak Thapa';
+  }, []);
   const [state, handleSubmit] = useForm('meqybged');
   const [email, setEmail] = useState('');
   const [msg, setMsg] = useState('');
@@ -20,28 +23,28 @@ const Contact = () => {
   }, [state.succeeded]);
 
   return (
-    <div className='w-full text-white bg-custom-gradient'>
+    <div className='w-full text-white bg-custom-gradient p-6'>
       {showSuccess && <Confetti />}
-      <div className='flex flex-col items-center justify-center h-[100vh]'>
+      <div className='flex flex-col items-center justify-start h-[100vh] '>
         <h3
           id='phrase'
-          className='text-3xl'
+          className='text-center text-3xl mt-10 mb-10'
         >
           Get In Touch
         </h3>
         <p></p>
         <form
           onSubmit={handleSubmit}
-          className='flex flex-col w-[100vw] py-6 px-4 max-w-lg'
+          className='rounded-lg backdrop-blur-xl flex flex-col w-[87vw] py-6 px-4 max-w-md'
         >
           <label
-            className='text-white block text-gray-700 text-md font-bold mb-2'
+            className='text-white block text-gray-700 text-sm font-bold mb-2'
             htmlFor='email'
           >
             Email Address
           </label>
           <input
-            className='border-none outline-none bg-zinc-900  text-white font-normal shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            className='border-none outline-none bg-zinc-900  text-white text-[12px] font-normal shadow appearance-none border rounded-lg w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
             id='email'
             type='email'
             name='email'
@@ -55,13 +58,13 @@ const Contact = () => {
             className='font-mono text-red-400 text-sm '
           />
           <label
-            className='mt-2 block text-white text-md font-bold mb-2'
+            className='mt-2 block text-white text-sm font-bold mb-2'
             htmlFor='message'
           >
             Message
           </label>
           <textarea
-            className='border-none outline-none bg-zinc-900 text-white font-normal shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            className='border-none outline-none bg-zinc-900 text-white text-[12px] font-normal shadow appearance-none border rounded-lg w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
             id='message'
             rows='5'
             name='message'
@@ -74,15 +77,16 @@ const Contact = () => {
             errors={state.errors}
           />
           <button
-            className='bg-emerald-500 hover:bg-emerald-600 text-white font-bold my-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            className='bg-emerald-500 hover:bg-emerald-600 text-white text-[12px] font-bold my-2 py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline'
             type='submit'
             disabled={state.submitting}
           >
             Submit
           </button>
           <br />
-          <span className='text-sm b-0'>
-            after submitting wait for few secs, mail may take a while to sent
+          <span className='text-xs font-normal opacity-0.6 b-0'>
+            after submitting wait for few seconds, mail may take a while to
+            sent
           </span>
         </form>
         {showSuccess && (

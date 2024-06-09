@@ -1,8 +1,10 @@
-import React from 'react';
-import About from './About.jsx';
+import React, { useEffect } from 'react';
 import '../App.css';
 
 const Hero = () => {
+  useEffect(() => {
+    document.title = 'Portfolio(Deepak Thapa) Home';
+  }, []);
   return (
     <div id='body'>
       <div id='background-wrap'>
@@ -27,23 +29,27 @@ const Hero = () => {
             Frontend Developer
           </span>
         </h1>
-        
+
         <div className='text-white font-bold text-center'>
-          <p className='text-2xl'>Deepak Thapa</p>
+          <b className='mb-4'>"DEEPAK THAPA"</b>
+
           <h2 id='phrase'>Student from University of Delhi, India</h2>
         </div>
 
         <div className='flex gap-4 text-[15px] xs:text-xs sm:text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-lg text-center'>
-          <a href='/about'>
+          <a
+            id='high'
+            href='/about'
+          >
             <button className='bg-zinc-950  hover:bg-zinc-900 text-white font-normal py-2 px-4 rounded shadow'>
               Know About Me
             </button>
           </a>
-          <a href='/contact'>
-            <button
-              disabled
-              className='bg-zinc-950 text-white font-normal py-2 px-4 rounded shadow'
-            >
+          <a
+            id='high'
+            href='/contact'
+          >
+            <button className='bg-zinc-950 text-white font-normal py-2 px-4 rounded shadow'>
               Get In Touch
             </button>
           </a>

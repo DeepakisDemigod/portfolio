@@ -7,9 +7,12 @@ const Navbar = () => {
         <h2>PORTFOLIO</h2>
       </a>
       <ul className='text-normal flex justify-between gap-4 font-medium'>
-        {/*<a title="Know About Me" href='/about'>
+        <a
+          title='Know About Me'
+          href='/about'
+        >
           <li>About</li>
-        </a>*/}
+        </a>
         <a
           title='Get In Touch'
           href='/contact'

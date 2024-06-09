@@ -16,7 +16,7 @@ function App() {
             element={<Hero />}
           />
           <Route
-            path='/about'
+            path='/About'
             element={<About />}
           />
           <Route

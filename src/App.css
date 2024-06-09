@@ -24,6 +24,10 @@ body {
   margin-top: 50px;
 }
 
+#high {
+  z-index: 2;
+}
+
 /* KEYFRAMES */
 
 @-webkit-keyframes animateBubble {
