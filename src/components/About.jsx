@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-
+import { FileArrowDown } from '@phosphor-icons/react';
 const About = () => {
   useEffect(() => {
     document.title = 'Portfolio | Know About Me';
@@ -42,9 +42,13 @@ const About = () => {
           </div>
 
           <div className='mt-4 mb-6 flex w-full gap-2 justify-center items-center'>
-            <button className='rounded bg-[#009578] text-xs text-white font-bold px-5 py-[2px]'>
-              Follow
+            
+            
+            <a href="/resume.pdf" download><button className='rounded bg-[#009578] text-xs text-white font-medium px-5 py-[2px] flex h-6 items-center'>
+              <FileArrowDown size={16} />
+              <span>Resume</span>
             </button>
+            </a>
             <a
               href='/contact'
               title='Send a Message'
