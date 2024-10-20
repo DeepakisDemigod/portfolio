@@ -25,8 +25,8 @@ const Hero = () => {
           className='mt-[-85px] text-6xl font-extrabold text-left xs:text-6xl text-left sm:text-6xl text-left md:text-8xl text-center lg:text-8xl 2xl:text-9xl text-white'
         >
           <span>
-            Designer And <br />
-            Frontend Developer
+            Good Things<br />
+            Takes Time
           </span>
         </h1>
 
