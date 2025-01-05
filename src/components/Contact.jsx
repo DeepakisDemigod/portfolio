@@ -1,120 +1,127 @@
-import React, { useEffect, useState } from 'react';
-import { useForm, ValidationError } from '@formspree/react';
-import Confetti from './Confetti.jsx';
+import React, { useEffect, useState } from "react";
+import { useForm } from "@formspree/react";
+import { Input, Button, Form, notification } from "antd";
+import { MailOutlined, SendOutlined, SmileOutlined } from "@ant-design/icons";
+import Confetti from "./Confetti.jsx";
 
 const Contact = () => {
   useEffect(() => {
-    document.title = 'Contact Deepak Thapa';
+    document.title = "Contact Deepak Thapa";
   }, []);
-  const [state, handleSubmit] = useForm('mzbnlrdo');
-  const [email, setEmail] = useState('');
-  const [msg, setMsg] = useState('');
+
+  const [state, handleSubmit] = useForm("meqybged");
+  const [email, setEmail] = useState("");
+  const [msg, setMsg] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
+
+  const openNotification = () => {
+    notification.open({
+      message: <span style={{ color: "white" }}>Message Sent 🎉</span>,
+      description: (
+        <span style={{ color: "white" }}>
+          Thank you for reaching out! Your message has been sent successfully. I’ll get back to you shortly.
+        </span>
+      ),
+      icon: <SmileOutlined style={{ color: "#52c41a" }} />,
+      placement: "topRight",
+      style: {
+        backgroundColor: "#111111",
+        borderRadius: "8px",
+        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+      },
+    });
+  };
 
   useEffect(() => {
     if (state.succeeded) {
       setShowSuccess(true);
-      setEmail('');
-      setMsg('');
+      setEmail("");
+      setMsg("");
       setTimeout(() => {
         setShowSuccess(false);
       }, 5000);
+
+      openNotification(); // Trigger the elegant notification
     }
   }, [state.succeeded]);
 
   return (
-    <div className='w-full text-white bg-custom-gradient p-6'>
+    <div className="w-full bg-black text-white p-6">
       {showSuccess && <Confetti />}
-      <div className='flex flex-col items-center justify-start h-[100vh] '>
-        <h3
-          id='phrase'
-          className='text-center text-3xl mt-10 mb-10'
-        >
+      <div className="flex flex-col items-center justify-start h-[100vh]">
+        <h3 className="text-center text-3xl mt-10 mb-10 text-white">
           Get In Touch
         </h3>
-        <p></p>
-        <form
-          onSubmit={handleSubmit}
-          className='rounded-lg backdrop-blur-xl flex flex-col w-[87vw] py-6 px-4 max-w-md'
+
+        <Form
+          style={{ background: "#111111", padding: "12px", borderRadius: "8px" }}
+          onFinish={handleSubmit}
+          className="w-full max-w-md flex flex-col gap-4"
         >
-          <label
-            className='text-white block text-gray-700 text-sm font-bold mb-2'
-            htmlFor='email'
+          <Form.Item
+            label={<span style={{ color: "white" }}>Email Address</span>}
+            name="email"
+            rules={[
+              {
+                required: true,
+                type: "email",
+                message: "Please input a valid email!",
+              },
+            ]}
           >
-            Email Address
-          </label>
-          <input
-            className='border-none outline-none bg-zinc-900  text-white text-[12px] font-normal shadow appearance-none border rounded-lg w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-            id='email'
-            type='email'
-            name='email'
-            onChange={e => setEmail(e.target.value)}
-            placeholder='johnhenkin@gmail.com'
-          />
-          <ValidationError
-            prefix='Email'
-            field='email'
-            errors={state.errors}
-            className='font-mono text-red-400 text-sm '
-          />
-          <label
-            className='mt-2 block text-white text-sm font-bold mb-2'
-            htmlFor='message'
+            <Input
+              style={{
+                background: "#222222",
+                color: "white",
+                borderColor: "#333333",
+              }}
+              prefix={<MailOutlined style={{ color: "#888888" }} />}
+              placeholder="johnhenkin@gmail.com"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+          </Form.Item>
+
+          <Form.Item
+            label={<span style={{ color: "white" }}>Message</span>}
+            name="message"
+            rules={[{ required: true, message: "Please input your message!" }]}
           >
-            Message
-          </label>
-          <textarea
-            className='border-none outline-none bg-zinc-900 text-white text-[12px] font-normal shadow appearance-none border rounded-lg w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-            id='message'
-            rows='5'
-            name='message'
-            onChange={e => setMsg(e.target.value)}
-            placeholder='your message for me..'
-          />
-          <ValidationError
-            prefix='Message'
-            field='message'
-            errors={state.errors}
-          />
-          <button
-            className='bg-emerald-500 hover:bg-emerald-600 text-white text-[12px] font-bold my-2 py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline'
-            type='submit'
-            disabled={state.submitting}
-          >
-            Submit
-          </button>
-          <br />
-          <span className='text-xs font-normal opacity-0.6 b-0'>
-            after submitting wait for few seconds, mail may take a while to
-            sent
-          </span>
-        </form>
-        {showSuccess && (
-          <div className='h-screen flex items-center justify-center'>
-            <div
-              className='bg-teal-100 border-t-4 border-teal-500 rounded text-teal-900 px-4 py-3 shadow-md'
-              role='alert'
+            <Input.TextArea
+              style={{
+                background: "#222222",
+                color: "white",
+                borderColor: "#333333",
+              }}
+              placeholder="Your message for me.."
+              rows={5}
+              onChange={(e) => setMsg(e.target.value)}
+              value={msg}
+            />
+          </Form.Item>
+
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              icon={<SendOutlined />}
+              loading={state.submitting}
+              block
             >
-              <div className='flex'>
-                <div className='py-1'>
-                  <div className='rounded-full border border-teal-500 border-2 p-1 mr-2'>
-                    <svg
-                      className='fill-current h-5 w-6 text-teal-500'
-                      xmlns='http://www.w3.org/2000/svg'
-                      viewBox='0 0 448 512'
-                    >
-                      <path d='M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z' />
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <p className='font-bold'>Thank you for reaching out.</p>
-                  <p className='text-sm'>Message Sent Successfully!</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+              Submit
+            </Button>
+          </Form.Item>
+
+          <Form.Item>
+            <span
+              className="text-xs font-normal"
+              style={{ color: "white", opacity: 0.6 }}
+            >
+              After submitting, please wait a few seconds, as the mail may take a
+              while to send.
+            </span>
+          </Form.Item>
+        </Form>
       </div>
     </div>
   );

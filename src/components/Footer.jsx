@@ -1,11 +1,24 @@
-import React from 'react';
+import React from "react";
+import { Typography, Layout } from "antd";
 
-const Footer = () => {
+const { Footer } = Layout;
+const { Text } = Typography;
+
+const AppFooter = () => {
   return (
-    <div className='flex items-center justify-center h-50px bg-black text-white text-sm font-bold'>
-      <div>© 2024 Deepak Thapa</div>
-    </div>
+    <Footer
+      style={{
+        textAlign: "center",
+        backgroundColor: "black",
+        color: "white",
+        padding: "20px",
+      }}
+    >
+      <Text strong style={{ color: "white" }}>
+        © 2025 Deepak Thapa
+      </Text>
+    </Footer>
   );
 };
 
-export default Footer;
+export default AppFooter;

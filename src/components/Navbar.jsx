@@ -1,25 +1,33 @@
-import React from 'react';
+import { Typography, Menu } from "antd";
+
+const { Title } = Typography;
 
 const Navbar = () => {
   return (
-    <div className=' w-full prose bg-zinc-950 text-white flex p-4 justify-between items-center font-normal'>
-      <a href='/'>
-        <h2>PORTFOLIO</h2>
+    <div className="w-full bg-black text-white flex justify-between items-center p-4">
+      <a href="/" style={{ textDecoration: "none" }}>
+        <Title level={2} style={{ color: "#FFFFFF", margin: 0 }}>
+          PORTFOLIO
+        </Title>
       </a>
-      <ul className='text-normal flex justify-between gap-4 font-medium'>
-        <a
-          title='Know About Me'
-          href='/about'
-        >
-          <li>About</li>
-        </a>
-        <a
-          title='Get In Touch'
-          href='/contact'
-        >
-          <li>Contact</li>
-        </a>
-      </ul>
+
+      <Menu
+        mode="horizontal"
+        theme="dark"
+        style={{ backgroundColor: "transparent" }}
+        selectable={false}
+      >
+        <Menu.Item key="about">
+          <a href="/about" title="Know About Me" style={{ color: "#FFFFFF" }}>
+            About
+          </a>
+        </Menu.Item>
+        <Menu.Item key="contact">
+          <a href="/contact" title="Get In Touch" style={{ color: "#FFFFFF" }}>
+            Contact
+          </a>
+        </Menu.Item>
+      </Menu>
     </div>
   );
 };

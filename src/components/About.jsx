@@ -1,72 +1,150 @@
-import React, { useEffect } from 'react';
-import { FileArrowDown } from '@phosphor-icons/react';
-const About = () => {
-  useEffect(() => {
-    document.title = 'Portfolio | Know About Me';
-  }, []);
-  return (
-    <div className='bg-custom-gradient h-screen p-6'>
-      <h3
-        id='phrase'
-        className='text-3xl text-center text-white mb-10 mt-10'
-      >
-        About Me
-      </h3>
-      <div className='flex items-center justify-center h-[34vh]'>
-        <div className='flex flex-col items-start justify-center  backdrop-blur-xl rounded-lg max-w-md '>
-          <div className='flex gap-4 p-6 pb-2'>
-            <img
-              className='bg-[#ddd] rounded-lg border border-2 border-[#009578] w-14'
-              src='/avatar_no-bg.png'
-            />
-            <div className='text-white'>
-              <h3 className='font-bold'>Deepak Thapa</h3>
-              <span className='rounded-lg text-[10px] font-bold bg-[#009578] p-[2.5px] px-2'>
-                available
-              </span>
-            </div>
-          </div>
-          <div className='text-xs font-medium text-white px-6'>
-            <span>
-              <b className='text-md py-0'>
-                <span>Deepak</span> •<span> Designer</span>
-              </b>
-              <br />
-              <span className='opacity-[0.8]'>
-                #designer
-                <br /> #frontend #developer <br /> based in delhi am designer
-                and software developer, primarily frontend developer i design
-                responsive and appealing user experiences.
-              </span>
-            </span>
-          </div>
+import React, { useState, useEffect } from "react";
+import { Button, Card, List, Typography, Avatar, Spin } from "antd";
+import {
+  DownloadOutlined,
+  MailOutlined,
+  MessageOutlined,
+} from "@ant-design/icons";
 
-          <div className='mt-4 mb-6 flex w-full gap-2 justify-center items-center'>
-            
-            
-            <a href="/resume.pdf" download><button className='rounded bg-[#009578] text-xs text-white font-medium px-5 py-[2px] flex h-6 items-center'>
-              <FileArrowDown size={16} />
-              <span>Resume</span>
-            </button>
+const { Title, Text } = Typography;
+
+const About = () => {
+  const username = "DeepakisDemigod";
+  const [repos, setRepos] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchRepos = async () => {
+    const url = `https://api.github.com/users/${username}/repos`;
+
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const reposData = await response.json();
+      setRepos(reposData);
+    } catch (error) {
+      console.error("Failed to fetch repos:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    document.title = "Portfolio | Know About Me";
+    fetchRepos();
+  }, []);
+
+  return (
+    <div className="p-6 bg-black text-white">
+      <Title level={3} className="text-center text-white mb-10 mt-10">
+        About Me
+      </Title>
+
+      <div className="flex items-center justify-center">
+        <Card
+          style={{
+            maxWidth: 400,
+            background: "rgba(255, 255, 255, 0.1)",
+            borderRadius: "10px",
+            padding: "4px",
+            border: "1px solid #333333",
+            borderRadius: "8px",
+          }}
+        >
+          <div className="flex justify-center mb-4 w-auto">
+            <Avatar src="/avatar_no-bg.png" size={80} />
+          </div>
+          <Title level={4} style={{ color: "white", textAlign: "center" }}>
+            Deepak Thapa
+          </Title>
+          <Text
+            type="success"
+            className="block mb-3 font-bold"
+            style={{ color: "#00ee00" }}
+          >
+            🟢 Online
+          </Text>
+          <Text style={{ color: "white" }}>
+            <b>Deepak • Designer</b>
+            <br />
+            <Text type="secondary" style={{ color: "lightgray" }}>
+              #designer #frontend #developer <br />
+              Based in Delhi, a designer and software developer specializing in
+              responsive and appealing user experiences.
+            </Text>
+          </Text>
+
+          <div className="mt-4 mb-4 flex gap-2 justify-center">
+            <a href="/resume.pdf" download>
+              <Button type="primary" icon={<DownloadOutlined />} size="small">
+                Resume
+              </Button>
             </a>
-            <a
-              href='/contact'
-              title='Send a Message'
-            >
-              <button className='rounded border border-1 border-white opacity-[0.8] text-white text-xs font-bold px-5 py-1'>
+            <a href="/contact">
+              <Button icon={<MessageOutlined />} size="small">
                 Message
-              </button>
+              </Button>
             </a>
-            <a
-              href='mailto:deepakthapa1423@gmail.com'
-              title='Send a Mail'
-            >
-              <button className='rounded border border-1 border-white opacity-[0.8] text-white text-xs font-bold px-5 py-1'>
+            <a href="mailto:deepakthapa1423@gmail.com">
+              <Button icon={<MailOutlined />} size="small">
                 Email
-              </button>
+              </Button>
             </a>
           </div>
-        </div>
+        </Card>
+      </div>
+
+      <div className="text-left text-white mt-6">
+        <Title level={4} className="mb-4" style={{ color: "white" }}>
+          GitHub Repositories
+        </Title>
+        {loading ? (
+          <Spin size="large" />
+        ) : repos.length > 0 ? (
+          <List
+            dataSource={repos}
+            style={{
+              border: "1px solid #333333",
+              borderRadius: "8px",
+              padding: "10px",
+              background: "#1a1a1a",
+            }}
+            renderItem={(repo) => (
+              <List.Item
+                style={{
+                  padding: "10px",
+                  marginBottom: "8px",
+                  background: "#222222",
+                  borderRadius: "6px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <a
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    textDecoration: "underline",
+                    color: "lightblue",
+                    fontWeight: "bold",
+                  }}
+                >
+                  🔗 {repo.name}
+                </a>
+                <span style={{ color: "white" }}>
+                  ⭐ {repo.stargazers_count}
+                </span>
+              </List.Item>
+            )}
+          />
+        ) : (
+          <Text type="secondary" style={{ color: "lightgray" }}>
+            No repositories found.
+          </Text>
+        )}
       </div>
     </div>
   );

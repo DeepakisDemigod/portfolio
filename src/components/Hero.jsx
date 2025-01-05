@@ -1,59 +1,75 @@
-import React, { useEffect } from 'react';
-import '../App.css';
+import React, { useEffect } from "react";
+import { Typography, Button, Space } from "antd";
+import "../App.css";
+
+const { Title } = Typography;
 
 const Hero = () => {
   useEffect(() => {
-    document.title = 'Portfolio(Deepak Thapa) Home';
+    document.title = "Portfolio (Deepak Thapa) Home";
   }, []);
+
   return (
-    <div id='body'>
-      <div id='background-wrap'>
-        <div className='bubble x1'></div>
-        <div className='bubble x2'></div>
-        <div className='bubble x3'></div>
-        <div className='bubble x4'></div>
-        <div className='bubble x5'></div>
-        <div className='bubble x6'></div>
-        <div className='bubble x7'></div>
-        <div className='bubble x8'></div>
-        <div className='bubble x9'></div>
-        <div className='bubble x10'></div>
+    <div id="body" className="bg-black text-white">
+      <div id="background-wrap">
+        <div className="bubble x1"></div>
+        <div className="bubble x2"></div>
+        <div className="bubble x3"></div>
+        <div className="bubble x4"></div>
+        <div className="bubble x5"></div>
+        <div className="bubble x6"></div>
+        <div className="bubble x7"></div>
+        <div className="bubble x8"></div>
+        <div className="bubble x9"></div>
+        <div className="bubble x10"></div>
       </div>
-      <div className='bg-custom-gradient prose flex flex-col items-center justify-center h-screen gap-10  p-4'>
-        <h1
-          id='phrase'
-          className='mt-[-85px] text-6xl font-extrabold text-left xs:text-6xl text-left sm:text-6xl text-left md:text-8xl text-center lg:text-8xl 2xl:text-9xl text-white'
+
+      <div className="flex flex-col items-center justify-center h-screen gap-8 p-4">
+        <Title
+          level={1}
+          className=" font-extrabold text-center"
+          style={{
+            fontSize: "clamp(3rem, 6vw, 8rem)",
+            marginTop: "-85px",
+          }}
         >
-          <span>
-            Good Things<br />
-            Takes Time
-          </span>
-        </h1>
+          <p id="phrase" style={{ color: "white" }}>
+            "Curiosity Finds Great New Experinces"
+          </p>
+        </Title>
 
-        <div className='text-white font-bold text-center'>
-          <b className='mb-4'>"DEEPAK THAPA"</b>
-
-          <h2 id='phrase'>Student from University of Delhi, India</h2>
+        <div className=" font-bold text-center">
+          <Title level={3} id="phrase" style={{ color: "#FFFFFF" }}>
+            Student from University of Delhi, India
+          </Title>
         </div>
 
-        <div className='flex gap-4 text-[15px] xs:text-xs sm:text-sm md:text-sm lg:text-md xl:text-lg 2xl:text-lg text-center'>
-          <a
-            id='high'
-            href='/about'
-          >
-            <button className='bg-zinc-950  hover:bg-zinc-900 text-white font-normal py-2 px-4 rounded shadow'>
+        <Space size="large" className="flex text-center">
+          <a href="/about">
+            <Button
+              id="button"
+              type="primary"
+              size="large"
+              style={{ backgroundColor: "#1c1c1c", borderColor: "#1c1c1c" }}
+            >
               Know About Me
-            </button>
+            </Button>
           </a>
-          <a
-            id='high'
-            href='/contact'
-          >
-            <button className='bg-zinc-950 text-white font-normal py-2 px-4 rounded shadow'>
+          <a href="/contact">
+            <Button
+              id="button"
+              type="default"
+              size="large"
+              style={{
+                backgroundColor: "#1c1c1c",
+                borderColor: "#1c1c1c",
+                color: "#FFFFFF",
+              }}
+            >
               Get In Touch
-            </button>
+            </Button>
           </a>
-        </div>
+        </Space>
       </div>
     </div>
   );
