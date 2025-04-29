@@ -16,7 +16,7 @@ const Hero = () => {
     >
       <p className="text-5xl">🏗️</p> <br />
       🚧 the site is under construction, <br /> you may want to leave a mail 🚧
-      <a className="underline" href="deepakthapa1423@gmail.com">
+      <a className="underline" href="mailto:deepakthapa1423@gmail.com">
         deepakthapa1423@gmail.com
       </a>
     </div>
