@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-gabarito: "Gabarito", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --primary-color: #ff6a00; /* Orange accent */
+  --secondary-color: #1a202c; /* Dark gray */
+  --background-gradient: linear-gradient(135deg, #0f172a, #1a202c);
+}
+
+@layer base {
+  html {
+    @apply text-gray-200 bg-gray-900;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-gabarito);
+    font-weight: 700;
+    @apply text-gray-100;
+  }
+
+  body,
+  p,
+  .text-body {
+    font-family: var(--font-inter);
+    font-weight: 400;
+    @apply text-gray-300;
+  }
+
+  .use-inter {
+    font-family: var(--font-inter);
+  }
+
+  a {
+    @apply text-orange-400 hover:text-orange-300 transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .premium-card {
+    @apply bg-gray-900/80 backdrop-blur-md rounded-xl p-6 shadow-lg border border-gray-800/50 hover:shadow-xl transition-shadow duration-300;
+  }
+}
+
+
+
+
+
+
+
+
+
+
