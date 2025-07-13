@@ -58,7 +58,6 @@ export default function Footer() {
               <path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"></path>
             </svg>
           </Link>
-		Kiraxxcherry
 	
         </div>
 		        <div className="flex flex-col gap-1 bg-[#00000035] py-2 px-4 text-white">
