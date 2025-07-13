@@ -17,6 +17,10 @@ export default function Work() {
               alt="sripatro-logo"
             />
             <h2 className="text-xl font-thin">SriPatro</h2>
+
+	  <Link href="https://sripatro.com">
+	  <span className="bg-red-800 text-white text-[10px] font-thin  rounded-lg px-1">https://sripatro.com</span>
+	  </Link>	
           </div>
           <Link href="https://sripatro.com">
             <ArrowSquareOut
