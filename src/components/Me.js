@@ -16,7 +16,7 @@ export default function Me() {
       <div className="flex flex-col gap-1 bg-[#00000025] py-2 px-4 text-white">
         <Link
           className="flex items-center gap-1"
-          href="/resume.pdf"
+          href="/resume-1.pdf"
           download="deepak's resume"
         >
           <span className="text-white underline">Resume</span>
